@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Signika&display=swap');
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 26px;
+    padding: 24px;
+    justify-content: center;
+    background-color: rgba(255, 246, 235, 0.5);
+}
+
+.flightNumber {
+    font-family: 'Signika', sans-serif;
+    font-size: 24px; 
+    color: #3E3753;
+    display: flex;
+    flex-direction: column;
+}
+
+.rocketName {
+    font-family: 'Signika', sans-serif;
+    color: #763F52;
+    font-size: 24px; 
+    display: flex;
+    flex-direction: column;
+    max-width: 125px;
+}
+
+.details {
+    font-family: 'Nunito Sans';
+    letter-spacing: 1px;
+    font-size: 14px;
+    width: 550px;
+    display: flex;
+    flex-direction: column;
+}
+
+.value {
+    padding: 0px 14px;
+
+}
+
+.link {
+    font-family: 'Nunito Sans';
+    text-transform: uppercase;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.headerCell {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Signika', sans-serif;
+    font-size: 14px;
+    padding: 14px;
+}
+
+.launchYear {
+    font-family: 'Signika', sans-serif;
+    color: #763F52;
+    font-size: 24px;
+}
