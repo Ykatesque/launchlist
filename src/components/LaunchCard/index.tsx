@@ -6,7 +6,7 @@ interface Props {
     flightNumber: number;
     rocketName: string;
     details: string;
-    launchYear: string;
+    launchYear: Date;
 
     links: {
         presskit: string;
@@ -28,13 +28,13 @@ const LaunchCard = ({ flightNumber, rocketName, details, launchYear, links }: Pr
         </div>
         <div className="launchYear">
         <div className="headerCell">Launch Year</div>
-        <div className="value"> {launchYear}</div>
+        <div className="value"> {launchYear ?  launchYear.toString().split("-")[0] : "Not Launched" }</div>
         </div>
         <div className="details">
             <div className="headerCell">Details</div>
             <div className="value"> {details} </div>
         </div>
-        {links.presskit === "" ? <a  className="link" onClick={() => window.open(links.wikipedia)}>Wikipedia Link</a> :<a  className="link" onClick={() => window.open(links.presskit)}>Presskit</a>}
+        {links.presskit ===  null ? <a  className="link" onClick={() => window.open(links.wikipedia)}><i>No Press Kit</i> <br/> Wikipedia Link</a> :<a  className="link" onClick={() => window.open(links.presskit)}>Presskit</a>}
     </div>
   );
 }

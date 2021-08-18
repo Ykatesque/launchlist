@@ -48,3 +48,26 @@ body {
 .title svg {
   padding-left: 20px;
 }
+
+.fixedNav{
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  display: flex;
+  right: 24px;
+  flex-direction: row;
+  justify-content: flex-end;
+  grid-gap: 14px;
+}
+
+.navButton{
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  padding: 14px;
+  background-color: rgba(255, 246, 235, 0.5);
+}
+
+.launchesWrapper {
+  padding-top: 40px;
+}

@@ -63,3 +63,14 @@
     color: #763F52;
     font-size: 24px;
 }
+
+
+i {
+    font-weight: normal;
+    font-style: italic;
+}
+
+
+.wrapper:hover {
+    background-color: rgba(255, 246, 235, 0.75);
+}
