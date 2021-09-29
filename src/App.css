@@ -54,10 +54,12 @@ body {
   width: 100vw;
   top: 0;
   display: flex;
-  right: 24px;
+  right: 0px;
+  padding: 14px;
   flex-direction: row;
-  justify-content: flex-end;
-  grid-gap: 14px;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background-color: #ffdec3;
 }
 
 .navButton{
@@ -65,6 +67,7 @@ body {
   letter-spacing: 2px;
   font-weight: bold;
   padding: 14px;
+  margin: 0 8px;
   background-color: rgba(255, 246, 235, 0.5);
 }
 

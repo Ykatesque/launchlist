@@ -6,6 +6,9 @@
     grid-gap: 26px;
     padding: 24px;
     justify-content: center;
+        /* added min height so each row is relatively the same height */
+    min-height: 250px;
+
     background-color: rgba(255, 246, 235, 0.5);
 }
 
@@ -17,13 +20,13 @@
     flex-direction: column;
 }
 
-.rocketName {
+.rocketName, .launchName, .launchYear {
     font-family: 'Signika', sans-serif;
     color: #763F52;
     font-size: 24px; 
     display: flex;
+    width: 200px;
     flex-direction: column;
-    max-width: 125px;
 }
 
 .details {
@@ -58,12 +61,6 @@
     padding: 14px;
 }
 
-.launchYear {
-    font-family: 'Signika', sans-serif;
-    color: #763F52;
-    font-size: 24px;
-}
-
 
 i {
     font-weight: normal;
@@ -73,4 +70,17 @@ i {
 
 .wrapper:hover {
     background-color: rgba(255, 246, 235, 0.75);
+}
+
+.value > a {
+    color: #3E3753;
+    display: block;
+    text-decoration: underline;
+    font-size: 24px;
+    margin-bottom: 14px; 
+
+}
+
+a:hover {
+    color: black;
 }

@@ -9,8 +9,11 @@ import './App.css';
 interface Launch {
   flight_number: number;
   name: string;
+  rocket: string;
   details: string;
   date_utc: Date;
+  id: string;
+  //lots of presskit links are combing back empty and currently redirecting to spaceX website, although the urls are valid
   links: {
     presskit: string;
     wikipedia: string;
@@ -31,8 +34,12 @@ const App = () => {
   const [NextPage, setNextPage] = useState<boolean>(false);
   const [PreviousPage, setPreviousPage] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1)
+  const [sortOrder, setSortOrder] = useState<string>("asc");
 
-  const getNextPage = (page: number ) => {
+
+  //ideally this function would come from a file like Api.tsx where all the api requests are held, and then imported here
+
+  const getNextPage = (page: number, keyword: string ) => {
     axios
       .post<SpaceXResponse>('https://api.spacexdata.com/v5/launches/query/', {
         headers: {
@@ -41,7 +48,7 @@ const App = () => {
           options: {
             page: page,
             "sort": {
-                "flight_number": "desc"
+                "flight_number": keyword
             }
           }
       })
@@ -50,7 +57,8 @@ const App = () => {
         setPreviousPage(response.data.hasPrevPage);
         setCurrentPage(response.data.page);
         setNextPage(response.data.hasNextPage);
-        setShowResults(true)
+        setSortOrder(keyword);
+        setShowResults(true);
         setLoading(false);
       })
       .catch((error) => {
@@ -59,21 +67,27 @@ const App = () => {
   };
 
 
-
   return (
     <div className="App">
       {showResults ? 
       <>
       <div className="fixedNav">
-        {PreviousPage && <button className="navButton" onClick={() => getNextPage(currentPage - 1)}>{loading? "Loading..." : "Previous Page"}</button>}
-        {NextPage && <button className="navButton" onClick={() => getNextPage(currentPage + 1)}>{loading? "Loading..." : "Next Page"}</button>}
+        <div className="innerNav">
+          {sortOrder == "asc" ? <button className="navButton" onClick={() => getNextPage(1, "desc")}> Sort by DESCENDING</button> : <button className="navButton" onClick={() => getNextPage(1, "asc")}>Sort by Ascending</button> }
+        </div>
+        <div className="innerNav">
+
+        {PreviousPage && <button className="navButton" onClick={() => getNextPage(currentPage - 1, sortOrder)}>{loading? "Loading..." : "Previous Page"}</button>}
+        {NextPage && <button className="navButton" onClick={() => getNextPage(currentPage + 1, sortOrder)}>{loading? "Loading..." : "Next Page"}</button>}
+        </div>
       </div>
       <div className="launchesWrapper">
         {launches.map((launch: Launch, i: number) => (
               <LaunchCard
                   key={i}
                   flightNumber={launch.flight_number}
-                  rocketName={launch.name}
+                  name={launch.name}
+                  rocketName={launch.rocket}
                   details={launch.details}
                   links={launch.links}
                   launchYear={launch.date_utc}
@@ -86,7 +100,7 @@ const App = () => {
       <div className="entryScreen">
           <div className="title">
             <SpaceXLogo/>
-            <button className="showResultsBtn" onClick={()=> getNextPage(1) }>{loading? "Loading..." : "View All Launches"}</button>
+            <button className="showResultsBtn" onClick={()=> getNextPage(1, sortOrder) }>{loading? "Loading..." : "View All Launches"}</button>
           </div>
       </div>
     }
